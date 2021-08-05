@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Data.Models
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<div>
+<h3 class="d-inline">Cart</h3>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="d-inline float-end" style="padding: 20px">
+        <a type="button" class="btn btn-success" asp-controller="Cart" asp-action="GetCartState" asp-route-id="@UserManager.GetUserId(User)">Show saved Cart</a>
+    </div>
+    <div class="d-inline float-end" style="padding: 20px">
+        <a type="button" class="btn btn-success" asp-controller="Account" asp-action="SaveUserCart">Save My Cart</a>
+    </div>
+}
+</div>
+@if (ViewBag.cart != null && ViewBag.cart.Count != 0)
+{
+    <div class="row container">
+        @foreach (var item in ViewBag.cart)
+        {
+            <div class="col-lg-4 my-3">
+                <div class="card">
+                    <img src="/img/@(item.Product.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Product.Name</h5>
+                        <p class="card-text">@item.Product.Description.</p>
+                        <p class="card-text">Category: @item.Product.ProductCategory.Name</p>
+                        <p class="card-text">Supplier: @item.Product.Supplier.Name</p>
+                        <p class="card-text text-center">
+                            <strong>Price: @item.Product.DefaultPrice.ToString("C2")</strong>
+                        </p>
+                        <div>
+                            <a type="button" class="d-inline btn btn-primary" id="decreaseBtn" asp-controller="cart" asp-action="ChangeAmount" asp-route-id="@item.Product.Id" asp-route-amount=-1>-</a>
+                            <input type="text" id="amount" class="d-inline form-control input-number" value=@item.Quantity min="1" style="width: 100px">
+                            <a type="button" class="d-inline btn btn-primary" id="increaseBtn" asp-controller="cart" asp-action="ChangeAmount" asp-route-id="@item.Product.Id" asp-route-amount=1>+</a>
+                        </div>
+                        <h6 class="card-title">Amount: @item.Quantity</h6>
+                        <a type="button" class="btn btn-primary" style="float: bottom" asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.Id">Remove from Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <h3 class="ms-auto w-auto">Total: @ViewBag.total</h3>
+            <a type="button" class="btn btn-primary w-auto" asp-controller="Cart" asp-action="BillingAddress">Checkout</a>
+        </div>
+    </div>
+}
+else
+{
+    <h5> Your cart is currently empty! Change this! </h5>
+}

@@ -1,0 +1,12 @@
+﻿@model List<ProductCategory>
+
+@{
+    Layout = null;
+}
+
+<div class="container">
+    @foreach (var element in Model)
+    {
+        <a href="" type="button" class="btn btn-primary" style="float: bottom">@element.Name</a>
+    }
+</div>

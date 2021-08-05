@@ -1,0 +1,45 @@
+﻿@model BillingAddressModel
+
+@{
+    ViewData["Title"] = "Order summary";
+}
+
+<div class="row container">
+    <h5>Your order:</h5>
+    @foreach (var item in ViewBag.cart)
+    {
+        <div class="my-3">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-4 d-flex justify-content-center">
+                        <img src="/img/@(item.Product.Name).jpg" style="width: 50%; align-self: center;">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Product.Name</h5>
+                            <p class="card-text">@item.Product.Description.</p>
+                            <p class="card-text">Category: @item.Product.ProductCategory.Department</p>
+                            <p class="card-text">Supplier: @item.Product.Supplier.Name</p>
+                            <p class="card-text">
+                                <strong>Price: @item.Product.DefaultPrice.ToString("C2")</strong>
+                            </p>
+                            <h6 class="card-title">Amount: @item.Quantity</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <h3 class="ms-auto w-auto">Total: @ViewBag.total</h3>
+    </div>
+    <h5>Billing address:</h5>
+    <h6>@Model.Name</h6>
+    <p>Address: @Model.ToString()</p>
+    <p>Email: @Model.Email</p>
+    <p>Phone: @Model.PhoneNumber</p>
+    
+    <a type="button" class="btn btn-danger w-auto mx-2" asp-controller="Cart" asp-action="BillingAddress">Correct billing data</a>
+    <a type="button" class="btn btn-success w-auto float-start mx-2" asp-controller="Cart" asp-action="Payment">Go to Payment</a>
+
+</div>

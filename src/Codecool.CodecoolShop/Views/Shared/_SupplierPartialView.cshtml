@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+    var suppliers = (List<Supplier>) ViewData["suppliers"];
+}
+
+@foreach (var supplier in suppliers)
+{
+    <li>
+        <a class="dropdown-item" href="#" data-sup-id="@supplier.Id">@supplier.Name</a>
+    </li>
+}
+
+<script>
+    $(document).ready(function () {
+        var categoriesMenu = $('#dropdownMenuSupplier').next();
+        categoriesMenu.children().each(function () {
+            $(this).children(0).attr("href", window.location.protocol + '//' +
+             window.location.host + '/product/bysupplier/' + $(this).children(0).attr('data-sup-id'))
+        });
+    });    
+</script>

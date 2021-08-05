@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Order confirmation";
+}
+
+<div class="row container">
+    <h3>Your payment is succesfull</h3>
+    <h5>You've bought: </h5>
+    @foreach (var item in ViewBag.cart)
+    {
+        <div class="my-3">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-4 d-flex justify-content-center">
+                        <img src="/img/@(item.Product.Name).jpg" style="width: 50%; align-self: center;">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Product.Name</h5>
+                            <p class="card-text">Supplier: @item.Product.Supplier.Name</p>
+                            <p class="card-text">
+                                <strong>Price: @item.Product.DefaultPrice.ToString("C2")</strong>
+                            </p>
+                            <h6 class="card-title">Amount: @item.Quantity</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <h3 class="ms-auto w-auto">Total: @ViewBag.total</h3>
+    </div>
+    <h5>Billing address:</h5>
+    <h6>@ViewBag.client.Name</h6>
+    <p>Address: @ViewBag.client.ToString()</p>
+    <p>Email: @ViewBag.client.Email</p>
+    <p>Phone: @ViewBag.client.PhoneNumber</p>
+    <h2>Check your e-mail for message with details of your order </h2>
+</div>

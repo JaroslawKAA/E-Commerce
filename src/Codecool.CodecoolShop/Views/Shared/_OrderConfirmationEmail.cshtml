@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+<div class="row container">
+    <h4>Order confirmation.</h4>
+    <h3>You bought: </h3>
+    @foreach (var item in (List<ProductEntityView>)ViewData["cart"])
+    {
+        <div class="my-3">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Product.Name</h5>
+                            <p class="card-text">Category: @item.Product.ProductCategory.Name</p>
+                            <p class="card-text">Supplier: @item.Product.Supplier.Name</p>
+                            <p class="card-text">
+                                <strong>Price: @item.Product.DefaultPrice.ToString("C2")</strong>
+                            </p>
+                            <h6 class="card-title">Amount: @item.Quantity</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <h3 class="ms-auto w-auto">Total: @ViewData["total"]</h3>
+    </div>
+    <br>
+    <h5>We will send your order to the address:</h5>
+    <h6>@(((BillingAddressModel)ViewData["client"]).Name)</h6>
+    <p>Address: @(((BillingAddressModel)ViewData["client"]).ToString())</p>
+    <p>Email: @(((BillingAddressModel)ViewData["client"]).Email)</p>
+    <p>Phone: @(((BillingAddressModel)ViewData["client"]).PhoneNumber)</p>
+    <br>
+    <h4 class = "text-muted">Thank you for shoping in Our Super Shop. Have a nice day!</h4>
+    <h5 class = "text-muted">Please do not respond for this message. It's generated automatically</h5>
+</div>

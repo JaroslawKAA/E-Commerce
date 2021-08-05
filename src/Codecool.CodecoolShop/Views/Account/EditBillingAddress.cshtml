@@ -1,0 +1,55 @@
+﻿@model BillingAddressModel
+
+@{
+    ViewData["Title"] = "Add billing addres";
+    string labelClasses = "col-md-2 control-label";
+    string validationMessageClasses = "text-danger";
+}
+
+@using (Html.BeginForm("EditBillingAddress",
+    "Account",
+    FormMethod.Post,
+    new {@id = "billingAddressForm", role = "form"}))
+{
+    <h3>Billing address</h3>
+    @Html.LabelFor(p => p.FirstName, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.FirstName)
+    @Html.ValidationMessageFor(p => p.FirstName, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(p => p.LastName, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.LastName)
+    @Html.ValidationMessageFor(m => m.LastName, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m => m.Email, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.Email)
+    @Html.ValidationMessageFor(m => m.Email, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m => m.PhoneNumber, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.PhoneNumber)
+    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m => m.Street, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.Street)
+    @Html.ValidationMessageFor(m => m.Street, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m => m.StreetNumber, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.StreetNumber)
+    @Html.ValidationMessageFor(m => m.StreetNumber, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m => m.HomeNumber, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.HomeNumber)
+    <br>
+    @Html.LabelFor(m => m.Zipcode, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.Zipcode)
+    @Html.ValidationMessageFor(m => m.Zipcode, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m=>m.City, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.City)
+    @Html.ValidationMessageFor(m=> m.City, "", new {@class = validationMessageClasses})
+    <br>
+    @Html.LabelFor(m=>m.Country, new {@class = labelClasses})
+    @Html.TextBoxFor(p => p.Country)
+    @Html.ValidationMessageFor(m=>m.Country, "", new {@class = validationMessageClasses})
+    <br>
+    <input class="btn btn-success" type="submit" value="Submit">
+}

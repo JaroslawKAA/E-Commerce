@@ -1,0 +1,36 @@
+﻿@model Product
+
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <th align="center">Product</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@Html.TextBoxFor(p => p.Name)</td>
+        </tr>
+        @* <tr> *@
+        @*     <td>Supplier</td> *@
+        @*     <td>@Html.TextBoxFor(p => p.Supplier)</td> *@
+        @* </tr> *@
+        <tr>
+            <td>Price</td>
+            <td>@Html.TextBoxFor(p => p.DefaultPrice)</td>
+        </tr>
+        <tr>
+            <td>Currency</td>
+            <td>@Html.TextBoxFor(p => p.Currency)</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>@Html.TextBoxFor(p => p.Description)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Submit">
+            </td>
+        </tr>
+    </table>
+}

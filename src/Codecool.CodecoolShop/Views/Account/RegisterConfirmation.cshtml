@@ -1,0 +1,16 @@
+﻿@using Data.Models
+@{
+    Layout = null;
+}
+
+<div class="row container">
+    <h4>Registration confirmation.</h4>
+    <h3>You have been registered in Our Super Shop. </h3>
+    <div class="row">
+        <h3 class="ms-auto w-auto">Your nick: @(((User)ViewData["user"]).UserName)</h3>
+    </div>
+    <br>
+    <h5>Thank you for your trust. Have a nice shoping.</h5>
+    <br>
+    <h5 class = "text-muted">Please do not respond for this message. It's generated automatically</h5>
+</div>

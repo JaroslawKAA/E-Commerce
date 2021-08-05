@@ -1,0 +1,41 @@
+﻿@model Data.Models.User
+
+@{
+    ViewBag.Title = "User";
+    Layout = "_Layout";
+}
+
+<div class="row container">
+    <div class="my-3">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card-body">
+                        <h5 class="card-title">User data:</h5>
+                        <p class="card-text">
+                            User name: @Model.UserName<br>
+                            Email: @Model.Email<br>
+                            Billing address: @(ViewBag.address == null ? "no billing address" : ViewBag.address.ToString())
+                            @if (ViewBag.address == null)
+                            {
+                                <a class="btn btn-sm btn-primary asp-area=" asp-controller="Account" asp-action="AddBillingAddress" id="cartBtn">
+                                    Add billing address
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-sm btn-primary asp-area=" asp-controller="Account" asp-action="EditBillingAddress" id="cartBtn">
+                                    Edit billing address
+                                </a>
+                            }
+                            <br>
+@*                             @foreach (var order in Model.Orders) *@
+@*                             { *@
+@*                             } *@
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
